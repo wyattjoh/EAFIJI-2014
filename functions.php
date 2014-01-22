@@ -13,7 +13,7 @@
  */
  
  // Useful global constants
-define( 'EAFIJI__VERSION', '0.1.0' );
+define('EAFIJI__VERSION', '0.1.0');
  
  /**
   * Set up theme defaults and register supported WordPress features.
@@ -30,9 +30,9 @@ define( 'EAFIJI__VERSION', '0.1.0' );
 	 * If you're building a theme based on EAFIJI-2014, use a find and replace
 	 * to change 'eafiji_' to the name of your theme in all template files.
 	 */
-	load_theme_textdomain( 'eafiji_', get_template_directory() . '/languages' );
+	load_theme_textdomain('eafiji_', get_template_directory() . '/languages');
  }
- add_action( 'after_setup_theme', 'eafiji__setup' );
+ add_action('after_setup_theme', 'eafiji__setup');
  
  /**
   * Enqueue scripts and styles for front-end.
@@ -40,13 +40,14 @@ define( 'EAFIJI__VERSION', '0.1.0' );
   * @since 0.1.0
   */
  function eafiji__scripts_styles() {
-	$postfix = ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) ? '' : '.min';
+	$postfix = ( defined('SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) ? '' : '.min';
 
-	wp_enqueue_script( 'eafiji_', get_template_directory_uri() . "/assets/js/eafiji_2014{$postfix}.js", array(), EAFIJI__VERSION, true );
+	wp_enqueue_script('jquery');
+	wp_enqueue_script('eafiji_', get_template_directory_uri() . "/assets/js/eafiji_2014{$postfix}.js", array('jquery'), EAFIJI__VERSION, true);
 		
-	wp_enqueue_style( 'eafiji_', get_template_directory_uri() . "/assets/css/eafiji_2014{$postfix}.css", array(), EAFIJI__VERSION );
+	wp_enqueue_style('eafiji_', get_template_directory_uri() . "/assets/css/eafiji_2014{$postfix}.css", array(), EAFIJI__VERSION);
  }
- add_action( 'wp_enqueue_scripts', 'eafiji__scripts_styles' );
+ add_action('wp_enqueue_scripts', 'eafiji__scripts_styles');
  
  /**
   * Add humans.txt to the <head> element.
@@ -54,6 +55,6 @@ define( 'EAFIJI__VERSION', '0.1.0' );
  function eafiji__header_meta() {
 	$humans = '<link type="text/plain" rel="author" href="' . get_template_directory_uri() . '/humans.txt" />';
 	
-	echo apply_filters( 'eafiji__humans', $humans );
+	echo apply_filters('eafiji__humans', $humans);
  }
- add_action( 'wp_head', 'eafiji__header_meta' );
+ add_action('wp_head', 'eafiji__header_meta');
