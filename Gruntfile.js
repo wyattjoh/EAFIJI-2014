@@ -18,6 +18,7 @@ module.exports = function( grunt ) {
 			},
 			eafiji_2014: {
 				src: [
+					'assets/js/vendor/bootstrap/bootstrap.min.js',
 					'assets/js/src/eafiji_2014.js'
 				],
 				dest: 'assets/js/eafiji_2014.js'
@@ -66,7 +67,7 @@ module.exports = function( grunt ) {
 		less:   {
 			all: {
 				files: {
-					'assets/css/eafiji_2014.css': 'assets/css/less/eafiji_2014.less'
+					'assets/css/eafiji_2014.css': ['assets/css/less/eafiji_2014.less', 'assets/css/less/bootstrap.less']
 				}
 			}
 		},
@@ -89,6 +90,15 @@ module.exports = function( grunt ) {
 				ext: '.min.css'
 			}
 		},
+
+		coffee: {
+			compile: {
+				files: {
+					'assets/js/src/eafiji_2014.js': 'assets/js/src/coffee/eafiji_2014.coffee'
+				}
+			}
+		},
+
 		watch:  {
 			
 			less: {
@@ -101,7 +111,7 @@ module.exports = function( grunt ) {
 			
 			scripts: {
 				files: ['assets/js/src/**/*.js', 'assets/js/vendor/**/*.js'],
-				tasks: ['jshint', 'concat', 'uglify'],
+				tasks: ['jshint', 'coffee','concat', 'uglify'],
 				options: {
 					debounceDelay: 500
 				}
@@ -111,7 +121,7 @@ module.exports = function( grunt ) {
 
 	// Default task.
 	
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'less', 'cssmin'] );
+	grunt.registerTask( 'default', ['jshint', 'coffee', 'concat', 'uglify', 'less', 'cssmin'] );
 	
 
 	grunt.util.linefeed = '\n';
